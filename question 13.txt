@@ -1,0 +1,5 @@
+SELECT p.projno, w.empid, w.lastname
+FROM project p
+INNER JOIN assign a ON p.projno = a.projno
+INNER JOIN worker w ON a.empid = w.empid
+WHERE p.startdate > '25-SEP-21';

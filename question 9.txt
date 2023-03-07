@@ -1,0 +1,5 @@
+CREATE VIEW project_workers AS 
+SELECT project.projectno AS project_id, project.projname AS project_name, worker.empid AS worker_id, worker.lastname AS worker_name 
+FROM project
+JOIN assign ON project.projno = assign.projno 
+JOIN worker ON assign.empid = worker.empid;

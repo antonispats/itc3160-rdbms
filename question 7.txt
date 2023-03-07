@@ -1,0 +1,7 @@
+SELECT worker.lastname, dept.departmentname  
+FROM worker 
+JOIN dept
+ON worker.departmentid=dept.departmentid
+JOIN assign
+ON worker.empid = assign.empid
+WHERE assign.projno = 1019;

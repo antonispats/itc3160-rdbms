@@ -1,0 +1,12 @@
+INSERT INTO worker (empid, lastname, firstname, departmentid, salary)
+VALUES ('2670', 'Patsoulis', 'Antonis', 2, 60000);
+
+INSERT INTO worker (empid, lastname, firstname, departmentid, salary)
+VALUES ('2671', 'Tzevelekis', 'Ioannis', '2', 70000);
+
+INSERT INTO assign (projno, empid, hoursassigned) VALUES (1010, 2670, 40);
+INSERT INTO assign (projno, empid, hoursassigned) VALUES (1011, 2671, 20);
+INSERT INTO assign (projno, empid, hoursassigned) VALUES (1012, 2672, 30);
+INSERT INTO assign (projno, empid, hoursassigned) VALUES (1013, 2673, 10);
+
+SELECT * FROM ProjectWorkers;
