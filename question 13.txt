@@ -1,4 +1,4 @@
-SELECT p.projno, w.empid, w.lastname
+SELECT p.projno, w.empid, w.firstname, w.lastname
 FROM project p
 INNER JOIN assign a ON p.projno = a.projno
 INNER JOIN worker w ON a.empid = w.empid

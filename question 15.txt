@@ -1,5 +1,5 @@
-SELECT worker.lastname AS EmployeeName, Managers.Name AS ManagerName
+SELECT worker.firstname || ' ' || worker.lastname AS EmployeeName, emp.emp_name AS ManagerName
 FROM worker
 LEFT JOIN dept ON worker.departmentid = dept.departmentid
-LEFT JOIN Managers ON dept.mgrid = Managers.ID
-WHERE Workers.ID NOT IN (SELECT WorkerID FROM Assignments);
+LEFT JOIN emp ON dept.mgrid = emp.emp_no
+WHERE worker.empid NOT IN (SELECT empid FROM assign);
