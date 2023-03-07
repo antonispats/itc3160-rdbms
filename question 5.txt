@@ -1,0 +1,7 @@
+SELECT firstname, lastname
+FROM worker 
+JOIN dept
+ON worker.departmentid = dept.departmentid
+WHERE dept.departmentname = 'Research' 
+ORDER BY worker.salary ASC
+FETCH NEXT 1 ROWS ONLY;

@@ -1,0 +1,5 @@
+SELECT worker.lastname, dept.departmentname
+FROM worker 
+INNER JOIN dept
+ON worker.departmentid = dept.departmentid
+WHERE dept.departmentname = 'Accounting';
