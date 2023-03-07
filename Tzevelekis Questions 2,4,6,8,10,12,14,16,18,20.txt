@@ -1,0 +1,62 @@
+2) SELECT * FROM project WHERE projname LIKE '%urn%';
+
+4) SELECT lastname FROM worker INNER JOIN assign ON worker.empid = assign.empid
+WHERE assign.projno = 1001 ORDER BY lastname ASC;
+
+6) SELECT * 
+FROM project 
+WHERE budget = (SELECT MAX(budget) FROM project); 
+
+8) SELECT w.lastname, a.rating
+FROM worker w
+JOIN assign a ON w.empid = a.empid
+JOIN project p ON a.projno = p.projno
+JOIN emp m ON p.projmgrid = m.emp_no
+WHERE m.emp_name = 'Michael Burns'
+ORDER BY w.lastname ASC;
+
+10) SELECT project_id, project_name 
+FROM project_workers 
+WHERE worker_id = 101;
+
+12) UPDATE assign
+SET hoursassigned = 10
+WHERE projno = 1019 AND empid = 110;
+
+14) SELECT project.projno, project.projname, COUNT(assign.empid) AS NumWorkers, SUM(assign.hoursassigned) AS TotalHours
+FROM project
+JOIN assign ON project.projno = assign.projno
+GROUP BY project.projno, project.projname;
+
+16) SELECT projno, projname, startdate
+FROM project
+GROUP BY startdate, projno, projname
+HAVING COUNT(*) > 1;
+
+18) SELECT assign.empid, assign.projno 
+FROM Assign 
+WHERE assign.rating IS NULL;
+
+20)
+CREATE OR REPLACE TRIGGER update_num_employees_assigned
+AFTER INSERT OR UPDATE OR DELETE ON Assign
+FOR EACH ROW
+BEGIN
+  IF INSERTING THEN
+    UPDATE Project
+    SET numEmployeesAssigned = numEmployeesAssigned + 1
+    WHERE Project.projno = :NEW.projno;
+  ELSIF UPDATING THEN
+    UPDATE Project
+    SET numEmployeesAssigned = numEmployeesAssigned - 1
+    WHERE Project.projno = :OLD.projno;
+    UPDATE Project
+    SET numEmployeesAssigned = numEmployeesAssigned + 1
+    WHERE Project.projno = :NEW.projno;
+  ELSIF DELETING THEN
+    UPDATE Project
+    SET numEmployeesAssigned = numEmployeesAssigned - 1
+    WHERE Project.projno = :OLD.projno;
+  END IF;
+END;
+/
