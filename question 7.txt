@@ -1,4 +1,4 @@
-SELECT worker.lastname, dept.departmentname  
+SELECT worker.firstname, worker.lastname, dept.departmentname  
 FROM worker 
 JOIN dept
 ON worker.departmentid=dept.departmentid
