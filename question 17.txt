@@ -1,0 +1,7 @@
+ALTER TABLE project ADD status varchar(20);
+
+UPDATE project SET status = 'active' WHERE projno = 1001;
+UPDATE project SET status = 'completed' WHERE projno = 1002;
+UPDATE project SET status = 'cancelled' WHERE projno = 1003;
+
+SELECT * FROM project WHERE status = 'active';

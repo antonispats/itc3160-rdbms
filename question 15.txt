@@ -1,0 +1,5 @@
+SELECT worker.lastname AS EmployeeName, Managers.Name AS ManagerName
+FROM worker
+LEFT JOIN dept ON worker.departmentid = dept.departmentid
+LEFT JOIN Managers ON dept.mgrid = Managers.ID
+WHERE Workers.ID NOT IN (SELECT WorkerID FROM Assignments);
